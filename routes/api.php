@@ -21,6 +21,12 @@ Route::prefix('v1')->group(function(){
     Route::patch("/tasks/{task}/complete",CompleteTaskController::class);
 });
 
+// ! add param to the method
+//! here we can add id? and if null get all , else find the task by id
+Route::get("taskList/{id?}",[TaskController::class,"taskListParam"]);
+
+//Route::post("create",[TaskController::class,"store"]);
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });

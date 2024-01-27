@@ -21,6 +21,9 @@ Route::prefix('v1')->group(function(){
     Route::patch("/tasks/{task}/complete",CompleteTaskController::class);
 });
 
+//! api resources only
+//Route::apiResource('/tasks',TaskController::class)->only(['index,show,update,store']);
+
 // ! add param to the method
 //! here we can add id? and if null get all , else find the task by id
 Route::get("taskList/{id?}",[TaskController::class,"taskListParam"]);

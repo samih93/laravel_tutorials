@@ -27,6 +27,7 @@ Route::prefix('v1')->group(function(){
 // ! add param to the method
 //! here we can add id? and if null get all , else find the task by id
 Route::get("taskList/{id?}",[TaskController::class,"taskListParam"]);
+Route::get("/fetchTasks",[TaskController::class,"fetchTaskssUsingSql"]);
 
 //Route::post("create",[TaskController::class,"store"]);
 

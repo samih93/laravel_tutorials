@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\TaskResource;
 use App\Http\Requests\storeTaskRequest;
 use App\Http\Requests\updateTaskRequest;
+use Illuminate\Support\Facades\DB;
 
 class TaskController extends Controller
 {
@@ -24,6 +25,13 @@ class TaskController extends Controller
     {
         //
         return  $id?  new TaskResource(Task::find($id)) : TaskResource::Collection(Task::all()) ;
+    }
+
+    // fetch data using sql
+    public function fetchTaskssUsingSql(){
+        $users = DB::select('select * from Tasks');
+        return $users;
+
     }
 
 
@@ -53,9 +61,7 @@ class TaskController extends Controller
      */
     public function update(updateTaskRequest $request, Task $task)
     {
-        //
-       // print($request);
-        print($task);
+
         $task->update($request->validated());
         return TaskResource::make($task);
     }
